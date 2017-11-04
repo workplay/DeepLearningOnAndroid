@@ -127,11 +127,17 @@ public class CSVExampleActivity extends AppCompatActivity {
 
 
         //evaluate the model on the test set
+
+        startTime = System.currentTimeMillis(); // start time
+
         Evaluation eval = new Evaluation(3);
         INDArray output = model.output(testData.getFeatureMatrix());
         eval.eval(testData.getLabels(), output);
         Log.i("ddd",eval.stats());
 
+        stopTime = System.currentTimeMillis();  // end time
+        elapsedTime = stopTime - startTime;
+        Log.i("ddd", "Test Time:" + String.valueOf(elapsedTime) + " ms");
 
 
         /*
